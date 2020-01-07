@@ -1,12 +1,10 @@
 import React from 'react';
-import SearchBar from './SearchBar/SearchBar';
-import Filter from './Filter/Filter';
+import Header from './Header/Header';
 
 function App() {
   return (
     <>
-      <SearchBar />
-      <Filter />
+      <Header />
     </>
     
   );
