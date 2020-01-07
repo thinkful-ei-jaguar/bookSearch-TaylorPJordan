@@ -8,4 +8,4 @@ describe('Search Bar Component', ()=>{
     ReactDOM.render(<SearchBar />, div);
     ReactDOM.unmountComponentAtNode(div);
   })
-})
+});
