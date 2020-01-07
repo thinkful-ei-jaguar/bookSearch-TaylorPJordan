@@ -50,12 +50,19 @@ class App extends Component {
            {viewability:'PARTIAL'}
         }
       ],
+      searchTerm: null,
       loading: false,
       error: null,
       printType: null,
       isEbook: null,
       viewability: null
     }
+  }
+
+  setSearchTerm = (term, e) => {
+    this.setState({
+      searchTerm: term
+    })
   }
 
   setPrintType = (printType) =>{
@@ -83,8 +90,13 @@ class App extends Component {
         changePrintType={printType=>this.setPrintType(printType)}
         changeBookType={bookType=>this.setBookType(bookType)}
         changeViewability={viewability=>this.setViewability(viewability)}
+        changeSearchTerm={term=>this.setSearchTerm(term)}
          />
-        <BookList books={this.state.booklist} />
+        <BookList books={this.state.booklist}
+        searchTerm={this.state.searchTerm} 
+        printType={this.state.printType}
+        isEbook={this.state.isEbook}
+        viewability={this.state.viewability}/>
       </>
       
     );

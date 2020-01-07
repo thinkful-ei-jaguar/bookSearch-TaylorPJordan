@@ -19,8 +19,6 @@ class Filter extends Component {
     else if(value==='ebooks'||value==='paid-ebooks'||value==='free-ebooks') {
       this.props.changeBookType(true);
       this.props.changeViewability(null);
-      // const printType = this.props.booklist.volumeInfo.printType.filter(type => type===value);
-      // this.props.changePrintType(printType);
     }
     else if(value==='ALL_PAGES'){
       this.props.changeBookType(false);

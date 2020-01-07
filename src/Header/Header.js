@@ -9,7 +9,7 @@ class Header extends Component {
         <div className='title' >
           <h1>Google Book Search</h1>
         </div>
-        <SearchBar />
+        <SearchBar searchTerm={this.props.changeSearchTerm}/>
         <Filter 
         changePrintType={this.props.changePrintType}
         changeBookType={this.props.changeBookType}

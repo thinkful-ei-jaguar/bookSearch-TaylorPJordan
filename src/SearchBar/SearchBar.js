@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 
 class SearchBar extends Component {
+
+
   render(){
     return(
       <form name='searchbar_form' className='searchbar_form' >
         <label htmlFor='searchbar_box'>
           Search:
         </label>
-        <input type='text' placeholder='keyword' id='searchbar_box' required>
+        <input type='text' placeholder='keyword' id='searchbar_box' required onChange={e=>this.props.searchTerm(e.target.value)}>
         </input>
-        <button type='submit' name='searchbar_submit'>Search</button>
+        <button type='submit' name='searchbar_submit'  >Search</button>
       </form>
     );
   }
