@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component renders header as is 1`] = `
+<header>
+  <div
+    className="title"
+  >
+    <h1>
+      Google Book Search
+    </h1>
+  </div>
+  <SearchBar />
+  <Filter />
+</header>
+`;

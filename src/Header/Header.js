@@ -10,7 +10,10 @@ class Header extends Component {
           <h1>Google Book Search</h1>
         </div>
         <SearchBar />
-        <Filter />
+        <Filter 
+        changePrintType={this.props.changePrintType}
+        changeBookType={this.props.changeBookType}
+        changeViewability={this.props.changeViewability}/>
       </header>
     );
   }

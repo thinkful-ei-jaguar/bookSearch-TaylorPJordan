@@ -51,13 +51,39 @@ class App extends Component {
         }
       ],
       loading: false,
-      error: null
+      error: null,
+      printType: null,
+      isEbook: null,
+      viewability: null
     }
   }
+
+  setPrintType = (printType) =>{
+    this.setState({
+      printType
+    });
+  }
+
+  setBookType = (isEbook) =>{
+    this.setState({
+      isEbook
+    });
+  }
+
+  setViewability = (value) =>{
+    this.setState({
+      viewability: value
+    })
+  }
+
   render(){
     return (
       <>
-        <Header />
+        <Header 
+        changePrintType={printType=>this.setPrintType(printType)}
+        changeBookType={bookType=>this.setBookType(bookType)}
+        changeViewability={viewability=>this.setViewability(viewability)}
+         />
         <BookList books={this.state.booklist} />
       </>
       
