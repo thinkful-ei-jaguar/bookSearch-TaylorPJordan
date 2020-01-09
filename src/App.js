@@ -20,10 +20,10 @@ class App extends Component {
             },
           saleInfo:
           {isEbook: false,
-          retailPrice:{
+            retailPrice:{
             amount: 5,
             currencyCode: 'US Dollars'
-          }
+            }
           },
           accessInfo:
            {viewability:'ALL_PAGES'}
@@ -50,9 +50,11 @@ class App extends Component {
            {viewability:'PARTIAL'}
         }
       ],
-      searchTerm: null,
+      filteredBooks:[],
+      searchTerm: '',
       loading: false,
       error: null,
+      filtering: false,
       printType: null,
       isEbook: null,
       viewability: null
@@ -60,8 +62,9 @@ class App extends Component {
   }
 
   setSearchTerm = (term, e) => {
+    let newTerm = term.toLowerCase();
     this.setState({
-      searchTerm: term
+      searchTerm: newTerm
     })
   }
 
@@ -83,6 +86,12 @@ class App extends Component {
     })
   }
 
+  setFiltering = (value) =>{
+    this.setState({
+      filtering: value
+    })
+  }
+
   render(){
     return (
       <>
@@ -91,8 +100,10 @@ class App extends Component {
         changeBookType={bookType=>this.setBookType(bookType)}
         changeViewability={viewability=>this.setViewability(viewability)}
         changeSearchTerm={term=>this.setSearchTerm(term)}
+        changeFiltering={term=>this.setFiltering(term)}
          />
         <BookList books={this.state.booklist}
+        filteredBooks={this.state.filteredBooks}
         searchTerm={this.state.searchTerm} 
         printType={this.state.printType}
         isEbook={this.state.isEbook}

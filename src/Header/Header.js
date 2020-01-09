@@ -13,7 +13,8 @@ class Header extends Component {
         <Filter 
         changePrintType={this.props.changePrintType}
         changeBookType={this.props.changeBookType}
-        changeViewability={this.props.changeViewability}/>
+        changeViewability={this.props.changeViewability}
+        changeFiltering={this.props.changeFiltering}/>
       </header>
     );
   }

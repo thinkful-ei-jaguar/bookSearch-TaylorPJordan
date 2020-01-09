@@ -4,10 +4,10 @@ class Filter extends Component {
   changePrintSelection(value) {
     if(value==='all') {
       this.props.changePrintType(null);
+      this.props.changeFiltering(false);
     } else {
       this.props.changePrintType(value);
-      // const printType = this.props.booklist.volumeInfo.printType.filter(type => type===value);
-      // this.props.changePrintType(printType);
+      this.props.changeFiltering(true);
     }
   };
 
@@ -15,18 +15,22 @@ class Filter extends Component {
     if(value==='none') {
       this.props.changeBookType(null);
       this.props.changeViewability(null);
+      this.props.changeFiltering(false);
     }
     else if(value==='ebooks'||value==='paid-ebooks'||value==='free-ebooks') {
       this.props.changeBookType(true);
       this.props.changeViewability(null);
+      this.props.changeFiltering(true);
     }
     else if(value==='ALL_PAGES'){
       this.props.changeBookType(false);
       this.props.changeViewability(value);
+      this.props.changeFiltering(true);
     }
     else if(value==='PARTIAL'){
       this.props.changeBookType(false);
       this.props.changeViewability(value);
+      this.props.changeFiltering(true);
     }
   }
 
