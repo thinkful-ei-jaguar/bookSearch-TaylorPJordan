@@ -10,7 +10,6 @@ class App extends Component {
       searchTerm: '',
       loading: false,
       error: null,
-      // filtering: false,
       printType: 'all',
       bookType: null,
     }
@@ -71,12 +70,7 @@ class App extends Component {
         changeBookType={bookType=>this.setBookType(bookType)}
         changeSearchTerm={term=>this.setSearchTerm(term)}
          />
-        <BookList books={this.state.booklist}
-        filteredBooks={this.state.filteredBooks}
-        searchTerm={this.state.searchTerm} 
-        printType={this.state.printType}
-        isEbook={this.state.isEbook}
-        viewability={this.state.viewability}/>
+        <BookList books={this.state.booklist}/>
       </>
       
     );
