@@ -6,58 +6,13 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state ={
-      booklist: [
-        {
-          id:'234567',
-          volumeInfo:
-            {title: 'Harry Potter',
-            author: ['JK Rowling'],
-            description: 'yer a wizard harry',
-            printType: 'BOOK',
-            imageLink:{
-            smallThumbnail: 'url'
-            }
-            },
-          saleInfo:
-          {isEbook: false,
-            retailPrice:{
-            amount: 5,
-            currencyCode: 'US Dollars'
-            }
-          },
-          accessInfo:
-           {viewability:'ALL_PAGES'}
-        },
-        {
-          id:'234967',
-          volumeInfo:
-            {title: 'Harry Potter II',
-            author: ['JK Rowling'],
-            description: 'yer a wizard harry..AGAIN',
-            printType: 'MAGAZINE',
-            imageLink:{
-            smallThumbnail: 'url'
-            }
-            },
-          saleInfo:
-          {isEbook: true,
-          retailPrice:{
-            amount: 30,
-            currencyCode: 'US Dollars'
-          }
-          },
-          accessInfo:
-           {viewability:'PARTIAL'}
-        }
-      ],
-      filteredBooks:[],
+      booklist: [],
       searchTerm: '',
       loading: false,
       error: null,
-      filtering: false,
-      printType: null,
-      isEbook: null,
-      viewability: null
+      // filtering: false,
+      printType: 'all',
+      bookType: null,
     }
   }
 
@@ -74,33 +29,47 @@ class App extends Component {
     });
   }
 
-  setBookType = (isEbook) =>{
+  setBookType = (bookType) =>{
     this.setState({
-      isEbook
+      bookType
     });
   }
 
-  setViewability = (value) =>{
+  setBookslist = (response) => {
     this.setState({
-      viewability: value
+      booklist: response
     })
   }
 
-  setFiltering = (value) =>{
-    this.setState({
-      filtering: value
-    })
+  getBooks = (event) => {
+    event.preventDefault();
+    const baseUrl = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchTerm}`;
+    const filter = this.state.bookType === null ? '' : `&filter=${this.state.bookType}`;
+    const printType = `&printType=${this.state.printType}`
+    const url = baseUrl + filter + printType;
+
+    console.log('Url formatted:', url);
+    fetch(url)
+      .then(res => {
+        if(!res.ok){
+          throw new Error(res.statusText);
+        } return res.json();
+      })
+      .then(response => {
+        console.log('Response.items:', response.items);
+        this.setBookslist(response.items)
+      })
+      .catch(err => console.log(err.message))
   }
 
   render(){
     return (
       <>
         <Header 
+        getBooks={e => this.getBooks(e)}
         changePrintType={printType=>this.setPrintType(printType)}
         changeBookType={bookType=>this.setBookType(bookType)}
-        changeViewability={viewability=>this.setViewability(viewability)}
         changeSearchTerm={term=>this.setSearchTerm(term)}
-        changeFiltering={term=>this.setFiltering(term)}
          />
         <BookList books={this.state.booklist}
         filteredBooks={this.state.filteredBooks}
