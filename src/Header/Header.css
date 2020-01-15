@@ -1,0 +1,15 @@
+.header {
+  margin: auto;
+  text-align: center;
+}
+
+.searchbar_form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  padding: 10px;
+  border: 1px solid green;
+  border-radius: 5px;
+}
